@@ -1,0 +1,10 @@
+{
+    "name": "ReasonUIExplorer",
+    "reason": {
+        "react-jsx": true
+    },
+    "bs-dependencies": ["bs-react-native", "reason-react"],
+    "sources": [{
+        "dir": "src"
+    }]
+}
