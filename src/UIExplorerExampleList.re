@@ -31,7 +31,7 @@ module UIExplorerExampleList = {
         sections=[|SectionList.section data::props.components key::"components" ()|]
         keyExtractor=(fun item _ => item.key)
         renderItem=(fun {item} =>
-        <TouchableHighlight onPress=(fun () => ())>
+        <TouchableHighlight onPress=(fun () => props.onPress item)>
           <View style=styles##row>
             <Text style=styles##rowTitleText>
               ExampleList.(ReactRe.stringToElement item.title)
