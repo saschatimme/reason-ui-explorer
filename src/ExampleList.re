@@ -24,5 +24,6 @@ module MakeExample (Example: ExampleT) => {
 };
 
 module Button = MakeExample ButtonExample;
+module View = MakeExample ViewExample;
 
-let components: array item = [|Button.item "ButtonExample"|];
+let components: array item = [|Button.item "ButtonExample", View.item "ViewExample" |];

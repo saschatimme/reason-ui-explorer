@@ -5,6 +5,7 @@
     },
     "bs-dependencies": ["bs-react-native", "reason-react"],
     "sources": [{
-        "dir": "src"
+        "dir": "src",
+        "subdirs": "examples"
     }]
 }

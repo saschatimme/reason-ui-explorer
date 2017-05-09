@@ -36,24 +36,33 @@ let header ::onBack=? ::title () =>
 
 module UIExplorerApp = {
   include ReactRe.Component.Stateful.JsProps;
+  let name = "UIExplorerApp";
   type props = unit;
-  type state = { currentExample: option ExampleList.item };
-  let getInitialState = fun () => { currentExample: None};
+  type state = {currentExample: option ExampleList.item};
+  let getInitialState () => {currentExample: None};
   type jsProps = option (unit => unit);
   let jsPropsToReasonProps = Some (fun _ => ());
-
   let onPress {state} item =>
     switch state.currentExample {
-    | None => Some { currentExample: Some item}
-    | Some _ => Some { currentExample: None}
+    | None => Some {currentExample: Some item}
+    | Some _ => Some {currentExample: None}
     };
-
-  let name = "UIExplorerApp";
-  let render { updater } =>
-    <View style=styles##exampleContainer>
-      (header title::"UIExplorer" ())
-      <UIExplorerExampleList components=ExampleList.components onPress=(updater onPress) />
-    </View>;
+  let onBack _ () => Some {currentExample: None};
+  let render {state, updater} => {
+    let components = ExampleList.components;
+    switch state.currentExample {
+    | None =>
+      <View style=styles##exampleContainer>
+        (header title::"ReasonUIExplorer" ())
+        <UIExplorerExampleList components onPress=(updater onPress) />
+      </View>
+    | Some example =>
+      <View style=styles##exampleContainer>
+        (header title::example.title onBack::(updater onBack) ())
+        <UIExplorerExampleContainer example />
+      </View>
+    }
+  };
 };
 
 include ReactRe.CreateComponent UIExplorerApp;

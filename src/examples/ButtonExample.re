@@ -11,7 +11,8 @@ let description = "Simple React Native button component.";
 let examples: list Example.t = [
   {
     title: "Simple Button",
-    description: "The title and onPress handler are required. It is recommended to set accessibilityLabel to help make your app usable by everyone.",
+    description:
+      Some "The title and onPress handler are required. It is recommended to set accessibilityLabel to help make your app usable by everyone.",
     render: fun () =>
       <Button
         onPress=onButtonPress
@@ -22,8 +23,10 @@ let examples: list Example.t = [
   {
     title: "Adjusted color",
     description:
-      "Adjusts the color in a way that looks standard on each " ^
-      "platform. On iOS, the color prop controls the color of the text. On " ^ "Android, the color adjusts the background color of the button.",
+      Some (
+        "Adjusts the color in a way that looks standard on each " ^
+        "platform. On iOS, the color prop controls the color of the text. On " ^ "Android, the color adjusts the background color of the button."
+      ),
     render: fun () =>
       <Button
         onPress=onButtonPress
@@ -34,7 +37,7 @@ let examples: list Example.t = [
   },
   {
     title: "Fit to text layout",
-    description: "This layout strategy lets the title define the width of " ^ "the button",
+    description: Some ("This layout strategy lets the title define the width of " ^ "the button"),
     render: fun () =>
       <View style=Style.(style [flexDirection `row, justifyContent `spaceBetween])>
         <Button
@@ -52,7 +55,7 @@ let examples: list Example.t = [
   },
   {
     title: "Disabled Button",
-    description: "All interactions for the component are disabled.",
+    description: Some "All interactions for the component are disabled.",
     render: fun () =>
       <Button
         disabled=true

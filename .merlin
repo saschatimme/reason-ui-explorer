@@ -1,3 +1,4 @@
+
 ####{BSB GENERATED: NO EDIT
 FLG -ppx /Users/sascha/coding/private/ReasonUIExplorer/node_modules/bs-platform/bin/reactjs_jsx_ppx.exe
 FLG -ppx /Users/sascha/coding/private/ReasonUIExplorer/node_modules/bs-platform/bin/bsppx.exe
@@ -10,4 +11,6 @@ S /Users/sascha/coding/private/ReasonUIExplorer/node_modules/reason-react/lib/oc
 B /Users/sascha/coding/private/ReasonUIExplorer/node_modules/reason-react/lib/ocaml
 S src
 B lib/bs/src
+S src/examples
+B lib/bs/src/examples
 ####BSB GENERATED: NO EDIT}
