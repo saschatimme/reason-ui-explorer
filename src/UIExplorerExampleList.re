@@ -23,38 +23,29 @@ let styles =
 
 module UIExplorerExampleList = {
   include ReactRe.Component;
-  include
+  module List =
     SectionList.CreateComponent {
+      include SectionList.Common;
       type item = ExampleList.item;
+      let renderItem {item} =>
+        <TouchableHighlight onPress=(fun () => ())>
+          <View style=styles##row>
+            <Text style=styles##rowTitleText>
+              ExampleList.(ReactRe.stringToElement item.title)
+            </Text>
+            <Text style=styles##rowDetailText>
+              ExampleList.(ReactRe.stringToElement item.title)
+            </Text>
+          </View>
+        </TouchableHighlight>;
     };
   type props = {onPress: ExampleList.item => unit, components: array ExampleList.item};
   let name = "UIExplorerExampleList";
-  let renderItem onPress {item} =>
-    <TouchableHighlight onPress=(fun () => onPress item)>
-      <View style=styles##row>
-        <Text style=styles##rowTitleText> (ReactRe.stringToElement item.title) </Text>
-        <Text style=styles##rowDetailText> (ReactRe.stringToElement item.description) </Text>
-      </View>
-    </TouchableHighlight>;
-  let itemSeparatorComponent {highlighted} => {
-    Js.log "highlighted";
-    Js.log highlighted;
-    <View
-      style=(
-              if highlighted {
-                styles##separatorHighlighted
-              } else {
-                styles##separator
-              }
-            )
-    />};
   let render {props} =>
     <View style=styles##listContainer>
-      <SectionList
-        sections=[|SectionList.section data::props.components key::"components" ()|]
-        renderItem=(renderItem props.onPress)
+      <List
+        sections=[|List.section data::props.components key::"components" ()|]
         keyExtractor=(fun item _ => item.key)
-        itemSeparatorComponent
       />
     </View>;
 };
