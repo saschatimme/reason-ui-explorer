@@ -23,11 +23,14 @@ let styles =
 
 module UIExplorerExampleList = {
   include ReactRe.Component;
-  module List =
-    SectionList.CreateComponent {
-      include SectionList.Common;
-      type item = ExampleList.item;
-      let renderItem {item} =>
+  type props = {onPress: ExampleList.item => unit, components: array ExampleList.item};
+  let name = "UIExplorerExampleList";
+  let render {props} =>
+    <View style=styles##listContainer>
+      <SectionList
+        sections=[|SectionList.section data::props.components key::"components" ()|]
+        keyExtractor=(fun item _ => item.key)
+        renderItem=(fun {item} =>
         <TouchableHighlight onPress=(fun () => ())>
           <View style=styles##row>
             <Text style=styles##rowTitleText>
@@ -37,15 +40,8 @@ module UIExplorerExampleList = {
               ExampleList.(ReactRe.stringToElement item.title)
             </Text>
           </View>
-        </TouchableHighlight>;
-    };
-  type props = {onPress: ExampleList.item => unit, components: array ExampleList.item};
-  let name = "UIExplorerExampleList";
-  let render {props} =>
-    <View style=styles##listContainer>
-      <List
-        sections=[|List.section data::props.components key::"components" ()|]
-        keyExtractor=(fun item _ => item.key)
+        </TouchableHighlight>
+        )
       />
     </View>;
 };
