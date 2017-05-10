@@ -36,9 +36,7 @@ module UIExplorerExampleList = {
         <Text style=styles##rowDetailText> (ReactRe.stringToElement item.description) </Text>
       </View>
     </TouchableHighlight>;
-  let itemSeparatorComponent {highlighted} => {
-    Js.log "highlighted";
-    Js.log highlighted;
+  let itemSeparatorComponent {highlighted} =>
     <View
       style=(
               if highlighted {
@@ -47,7 +45,7 @@ module UIExplorerExampleList = {
                 styles##separator
               }
             )
-    />};
+    />;
   let render {props} =>
     <View style=styles##listContainer>
       <SectionList
